@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Friend</title>
+    <link rel="icon" type="image/x-icon" href="favicon.webp">
+    <meta charset="UTF-8">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 13pt;
+        }
+        h2 {
+            margin-left: 10pt;
+        }
+        .content {
+            padding: 10pt;
+        }
+        .lmar, button, select {
+            margin: 4pt;
+            font-size: 13pt;
+        }
+        button {
+            padding: 5pt;
+            padding-right: 10pt;
+            padding-left: 10pt;
+            font-size: 10pt;
+        }
+        caption {
+            margin: 5pt;
+            font-size: 14pt;
+        }
+        table,td,th,tr {
+            border: 1px solid grey;
+            padding: 4pt;
+            text-align: center;
+        }
+        tr:last-of-type > td {
+            text-align: left;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        footer {
+            margin-top: 20pt;
+        }
+    </style>
+
+</head>
+<body>
+    <h2> <img src="favicon.webp" width="25" height="25"/> Mike's Rock Tracking Webite </h2>
+    <hr> 
+        
+    <div class="content">
+        <label class="lmar">Fill required fields to add record to the table</label>
+
+        <div class="lmar">
+            <label>Rock Type:</label>
+            <select>
+                <option>Sapphire</option>
+                <option>Ruby</option>
+                <option>Diamond</option>
+                <option>Uranium</option>
+            </select>
+            <br>
+        </div>
+        <div class="lmar">
+            <label>Year:</label>
+            <input type="date" required/>
+            <label>✅</label>
+            <br>
+        </div>
+        <div class="lmar">
+            <label>Amount:</label>
+            <input type="text" required/>
+            <label>❌</label>
+            <br>
+        </div>
+
+        <button type="submit">Submit</button>
+
+        <table>
+            <caption>
+                Rock Tracking
+            </caption>
+            <thead>
+                <tr>
+                    <th scope="col" rowspan="2">Rock</th>
+                    <th scope="col" colspan="3">Year</th>
+                </tr>  
+                <tr>
+                    <th scope="col">2010</th>
+                    <th scope="col">2012</th>
+                    <th scope="col">2014</th>
+                </tr>  
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sapphire</td>
+                    <td rowspan="2"> 1483</td>
+                    <td> 3334</td>
+                    <td> 2343</td>
+                </tr>    
+                <tr>
+                    <td>Ruby</td>
+
+                    <td> 5467</td>
+                    <td> 4567</td>
+                </tr>    
+
+                <tr>
+                    <td>Diamonds</td>
+                    <td> 2345</td>
+                    <td colspan="2"> 7654</td>
+
+                </tr>  
+                <tr>
+                    <td>Uranium</td>
+                    <td colspan="3"> 1225</td>
+                </tr>  
+                <tr>
+                    <td rowspan="auto" colspan="4">
+                        <label>
+                            Total: I can do anything!
+                        </label>
+                        <ol type="I">
+                        <li>
+                            Rare Rocks:
+                            <ul>
+                                <li><a href="https://en.wikipedia.org/wiki/Sapphire">Sapphires</a> are real deal</li>
+                                <li>But <a href="https://en.wikipedia.org/wiki/Ruby">rubies...</a> who needs them anyway?!</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Just Rocks:
+                            <ul>
+                                <li><a href="https://en.wikipedia.org/wiki/Uranium">They</a> are just normal rocks</li>
+                                <li>So <a href="https://www.reddit.com/r/Deltarune/comments/1l7pue6/so_who_is_mike/">I</a> don't even track them!!</li>
+                            </ul>
+                        </li>
+                        </ol>
+                    </td>
+                </tr>  
+            </tbody>
+        </table>
+        <footer> <hr> &copy Saikou Egor 2307b </footer>
+    </div>
+</body>
+</html>
