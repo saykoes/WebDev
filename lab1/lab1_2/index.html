@@ -16,8 +16,9 @@
     <!-- I know we're not supposed to do styles yet -->
     <style>    
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Noto Sans JP', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 13pt;
+            margin: 0;
         }
         h2 {
             font-family: 'Russo One','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -35,42 +36,33 @@
             box-sizing: border-box;
             background-color:darkred;
         }
-        hr {
-            margin: 0;
-        }
         nav > a{   
             box-sizing: border-box;
-            margin-right: 1vw;
-            margin-bottom: 5pt;
-            margin-top: 5pt;
+            margin: 5pt 1vw 5pt 0;
             background-color:crimson;
             color: white;
-            padding: 8pt;
-            padding-left: 2.5vw;
-            padding-right: 2.5vw;
+            padding: 8pt 2.5vw;
             text-decoration: none;
             font-weight: bold;
             border-radius: 2px;
         }
         nav > a:hover{
-            background-color:darkslateblue;
+            background-color:darkred;
         }
         .content {
             margin: 0 auto;
             width: 80vw;
-            max-width: 750pt;
+            max-width: 600pt;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             flex-direction: column;
-            text-align: center;
         }
         .darkened {
             width: 100%;
-            height: 200pt;
+            height: 20vw;
             overflow: hidden;
             position: relative;
-            border-radius: 1pt;
             margin-bottom: 5pt;
         }
         .darkened img {
@@ -79,34 +71,54 @@
             height: 100%;
             object-fit: cover;
         }
-        .darkened h1 {
+        .darkened .overlay {
             width: 100%;
+            height: 100%;
             position: absolute;
-            top: 50%;
-            left: 10vw;
-            transform: translate(0%,-110%);
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            padding-left: 10vw; 
+        }
+
+        .text-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* !!! Это центрирует h3 ровно под h1 */
+            width: fit-content;  /* Контейнер сужается до ширины самого длинного слова/строки */
+            transform: translate(0%,-10%);
+        }
+        .darkened h1 {
+            margin: 0;
             color: white;
             font-family: 'Rampart One', Arial, sans-serif;
-            font-size: 72pt;
+            font-size: calc(8vw + 10px);
+            white-space: nowrap; /* Чтобы заголовок не переносился */
         }
         .darkened h3 {
-            width: 100%;
-            position: absolute;
-            top: 65%;
-            left: calc(10vw + 40pt);
-            transform: translate(0%,10%);
+            margin: 10px 0 0 0;
             color: white;
             font-family: 'Press Start 2P', Arial, sans-serif;
             font-weight: normal;
+            font-size: 1.5vw;
+            text-align: center; /* Центрируем текст внутри h3 */
         }
         .lmar, button, select {
             margin: 4pt;
             font-size: 13pt;
         }
+        .lmar {
+            font-family: 'Train One','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            white-space: nowrap;
+            font-size: 26pt;
+        }
+        #Map img {
+            margin: auto;
+        }
         button {
-            padding: 5pt;
-            padding-right: 10pt;
-            padding-left: 10pt;
+            padding: 5pt 10pt;
             font-size: 10pt;
         }
         caption {
@@ -125,17 +137,28 @@
             border-collapse: collapse;
             width: 100%;
         }
+        textarea {
+            width: 100%;
+            height: 100pt;
+            font-family: 'Noto Sans JP', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12pt;
+        }
         footer {
-            margin-top: 20pt;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin: 10pt;
+            text-align: center;
         }
     </style>
-
 </head>
+
+
 <body>
     <h2> <img src="favicon.webp" width="23" height="23"/> Mike's Traveling Website </h2>
 
     <nav>
-            <a href="#map">Map</a>
+            <a href="#Map">Map</a>
             <a href="#Description">Description</a>
             <a href="#Weather">Weather</a>
             <a href="#About">About</a>
@@ -147,97 +170,83 @@
     <header>
         <div class="darkened">
             <img src="japan_title.avif" />
-            <h1>日本 / Japan</h1>
-            <h3>The land of the rising sun</h3>
-        </div>
-            
+            <div class="overlay">
+                <div class="text-group">
+                    <h1>日本 / Japan</h1>
+                    <h3>The land of the rising sun</h3>
+                </div>
+            </div>
+        </div>      
     </header>
 
-    <div class="map" id="map">
-        Map    
+    <div class="content" id="Map">
+        <label class="lmar">Map | チズ</label>   
+        <!-- https://github.com/ka215/svg-japan -->
+        <!-- https://github.com/geolonia/japanese-prefectures -->
+        <img src="map-full.svg" width="50%" height="25%"/>
     </div>
-
-
-
 
     <div class="content" id="Description">
-
-
-        <label class="lmar">Description</label>
-
+        <label class="lmar">Description | 説明</label>
+        <p>
+            Japan is an archipelago, or string of islands, on the eastern edge of Asia. There are four main islands: Hokkaido, Honshu, Shikoku, and Kyushu. There are also nearly 4,000 smaller islands! Japan's nearest mainland neighbors are the Siberian region of Russia in the north and Korea and China farther south.
+        </p>
+        <p>
+            Almost four-fifths of Japan is covered with mountains. The Japanese Alps run down the center of the largest island, Honshu. The highest peak is Mount Fuji, a cone-shaped volcano considered sacred by many Japanese.
+        </p>
+        <p>
+            Japan can be a dangerous place. Three of the tectonic plates that form Earth's crust meet nearby and often move against each other, causing earthquakes. More than a thousand earthquakes hit Japan every year. Japan also has about 200 volcanoes, 60 of which are active.
+        </p>
     </div>
 
+    <div class="content" id="Weather">
+        <label class="lmar">Weather | 天気</label>
+        <p>
+            Weather
+        </p>
+    </div>
 
+    <div class="content" id="About">
+        <label class="lmar">About | 国について</label>
+        <p>
+            We JAPANESE GOBLIN
+        </p>
+    </div>
 
-        <table id="Weather">
-            <caption>
-                Weather
-            </caption>
-            <thead>
-                <tr>
-                    <th scope="col">Today</th>
-                    <th scope="col">Tommorow</th>
-                </tr>  
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Sapphire</td>
-                    <td> 1483</td>
-
-                </tr>    
-                <tr>
-                    <td>Ruby</td>
-
-                    <td> 5467</td>
-
-                </tr>    
-
-                <tr>
-                    <td>Diamonds</td>
-                    <td> 2345</td>
-
-                </tr>  
-                <tr>
-                    <td>Uranium</td>
-                    <td> 225</td>
-                </tr>  
-            </tbody>
-        </table>
-
-        <div class="content" id="About">
-            <label class="lmar">About</label>
-        </div>
-
-        <div class="lmar" id="Feedback">
-            <label>Rock Type:</label>
-            <select>
-                <option>Sapphire</option>
-                <option>Ruby</option>
-                <option>Diamond</option>
-                <option>Uranium</option>
-            </select>
-            <br>
-        </div>
-        <div class="lmar">
-            <label>Year:</label>
-            <input type="date" required/>
+    <div class="content" id="Feedback">
+        <label class="lmar">Feedback | フィードバック</label>
+        <select>
+            <option>Plan a trip</option>
+            <option>Write a review</option>
+        </select>
+        <br>
+        <div>
+            <textarea placeholder="Tell us about your trip!"></textarea>
             <label>✅</label>
-            <br>
         </div>
-        <div class="lmar">
-            <label>Amount:</label>
+        <br>
+        <div>
+            <label>Your Name:</label>
             <input type="text" required/>
             <label>❌</label>
             <br>
         </div>
 
         <button type="submit">Submit</button>
+    </div>
 
-        <div class="content" id="FAQ">
-            <label class="lmar">FAQ</label>
-        </div>
+    <div class="content" id="FAQ">
+        <label class="lmar">FAQ | よくある質問</label>
+        <ul>
+            <li>Question 1</li>
+            <li>Question 2</li>
+            <li>Question 3</li>
+        </ul>
 
-        
-    <footer id="Contacts"> <hr> &copy Saikou Egor 2307b Contacts </footer>
+    </div>
+
+    <hr>
+    <footer id="Contacts"> <label class="lmar">Contacts | 連絡先</label> <br>
+        &copy Saikou Egor 2307b Contacts </footer>
 </body>
 </html>
