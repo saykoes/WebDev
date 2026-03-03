@@ -22,7 +22,7 @@ body {
     justify-content: center;
     font-family: 'Gabarito','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-h1 {
+h2 {
     margin: 10pt 0;
 }
 .content {
@@ -122,7 +122,7 @@ h1 {
     flex-grow: 1;
     height: 0;
     min-height: 50pt;
-    
+    align-content: center;
     &:empty{
         display: flex;
         justify-content: center;

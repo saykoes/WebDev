@@ -1,0 +1,248 @@
+$fade-time-std: 0.25s;
+$fade-time-fast: 0.15s;
+$extreme-ease-out: cubic-bezier(0.2, 0.6, 0.2, 1);
+$normal-ease-out: cubic-bezier(0.3, 0.5, 0.2, 1);
+$very-light-gray: #f7f7f7;
+$very-dark-gray: #111;
+$very-dark-red: #520000;
+$small-screen-width: 950px;
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Noto Sans JP', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13pt;
+    margin: 0;
+}
+h3 {
+    font-family: 'Russo One','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+    white-space: nowrap;
+    margin: 5px 20px;
+    padding: 5px;
+    font-weight: 100;
+    flex-grow: 1;
+
+    @media (width <= $small-screen-width) {
+        text-align: center;
+        width: 100%;
+    }
+}
+nav {
+    position: absolute;
+    z-index: 4;
+    font-family: 'Google Sans','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    vertical-align:middle;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    align-items: center;
+    background-color: #FFFFFFDD;
+    width: 100%;
+
+    & > a{
+        box-sizing: border-box;
+        margin: 5pt 1vw 5pt 0;
+        background-color:crimson;
+        color: white;
+        padding: 8pt 2.5vw;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 2px;
+        transition: background-color $fade-time-std $extreme-ease-out;
+        &:hover {
+            background-color:rgb(117, 0, 0);
+        }
+        &:active {
+            background-color: $very-dark-red;
+            transition: background-color $fade-time-fast $extreme-ease-out;
+        }
+    }
+}
+img {
+    transition: filter $fade-time-std $extreme-ease-out, 
+    transform 1s $extreme-ease-out ;
+}
+.content {
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 25px 20vw;
+    transition: padding $fade-time-std $extreme-ease-out;
+
+    @media (width <= $small-screen-width) {
+            padding: 25px 50px;
+    }
+
+    &:hover {
+        padding: 30px 20vw;
+        @media (width <= $small-screen-width) {
+            padding: 30px 50px;
+        }
+
+        .lmar {
+            background-color: $very-dark-gray;
+            color: white;
+            font-size: 28pt;
+            @media (width <= $small-screen-width) {
+                font-size: 22pt;
+            }
+        }
+        img {
+            filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.2));
+            transform: scale(1.02);
+        }
+
+        
+    }
+
+}
+.gray-bg {
+    background-color: $very-light-gray;
+}
+.darkened {
+    width: 100%;
+    height: 30vw;
+    @media (width <= $small-screen-width) {
+        height: 50vw;
+    }
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 5pt;
+    &:hover {
+        img {
+            transform: scale(1);
+            transition: transform 1.5s $extreme-ease-out;
+        }
+    }
+    img {
+        filter: brightness(40%);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.2);
+        transition: transform 1.5s $normal-ease-out;
+    }
+    .overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 20px;
+        @media (width <= $small-screen-width) {
+            top: 50px;
+        }
+        left: 0;
+        display: flex;
+        align-items: center;
+        padding-left: 10vw; 
+        @media (width <= $small-screen-width) {
+            padding-left: 20vw; 
+        }
+    }
+    h1 {
+        margin: 0;
+        color: white;
+        font-family: 'Rampart One', Arial, sans-serif;
+        font-size: calc(8vw + 10px);
+        white-space: nowrap; /* Чтобы заголовок не переносился */
+    }
+    h3 {
+        margin: 10px 0 0 0;
+        color: white;
+        font-family: 'Press Start 2P', Arial, sans-serif;
+        font-weight: normal;
+        font-size: 1.5vw;
+        text-align: center; /* Центрируем текст внутри h3 */
+    }
+}
+
+.text-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* !!! Это центрирует h3 ровно под h1 */
+    width: fit-content;  /* Контейнер сужается до ширины самого длинного слова/строки */
+    transform: translate(0%,-10%);
+}
+.lmar, button, select {
+    margin: 4pt;
+    font-size: 13pt;
+}
+.lmar {
+    margin: auto;
+    padding: 5px 20px;
+    font-family: 'Train One','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 26pt;
+    @media (width <= $small-screen-width) {
+            font-size: 20pt;
+    }
+    transition: 
+        color $fade-time-std $extreme-ease-out, 
+        background-color $fade-time-std $extreme-ease-out, 
+        font-size $fade-time-std $extreme-ease-out;
+}
+#Map {
+    padding: 25px;
+}
+#Map img {
+    margin: auto;
+    max-height: 80vh;
+}
+#Map .map-text {
+    margin: 50px;
+    padding: auto;
+    display: flex;
+    align-items: center;
+    @media (width <= $small-screen-width) {
+        flex-direction: column;
+    }
+}
+.map-text-text {
+    margin: 10px;
+    text-align: center;
+}
+button {
+    padding: 5pt 10pt;
+    font-size: 10pt;
+}
+
+details {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+summary {
+  font-weight: bold;
+  list-style: none; /* Убирает стандартный треугольник в некоторых браузерах */
+  display: flex;
+  justify-content: space-between;
+
+    &::after {
+        content: "+";
+    }
+
+}
+
+details[open] summary::after {
+  content: "-";
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10pt;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    h3 {
+        margin: auto;
+    }
+}
