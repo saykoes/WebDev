@@ -26,12 +26,13 @@
 <body>
 
 
-    <nav>
+    <nav class="navbar">
         <a href="#" class="a-logo-btn">
-            
-            <h3> <img src="FRIEND.webp" width="20" height="20"/> Mike's Traveling Website </h3>
+
+            <h3 class="logo-title"> <img src="FRIEND.webp" width="20" height="20" class="logo" /> Mike's Traveling
+                Website </h3>
         </a>
-        
+
         <a href="#Prices" class="a-btn">Prices</a>
         <a href="#About" class="a-btn">Agency</a>
         <a href="#Reviews" class="a-btn">Reviews</a>
@@ -41,25 +42,26 @@
     <header>
         <div class="darkened">
             <!-- Background -->
-            <img src="japan_title.avif" />
+            <img src="japan_title.avif" class="banner-img" />
             <!-- Overlay Text -->
             <div class="overlay">
                 <div class="text-group">
-                    <h1>日本 / Japan</h1>
-                    <h3>The land of the rising sun</h3>
+                    <h1 class="banner-title">日本 / Japan</h1>
+                    <h3 class="banner-subtitle">The land of the rising sun</h3>
                 </div>
+                <a href="#Places" class="a-btn banner-btn">Let's travel!</a>
             </div>
         </div>
     </header>
 
     <div class="content" id="Map">
-        <label class="lmar">Map | チズ</label>
+        <h2 class="lmar">Map | チズ</h2>
         <!-- https://github.com/ka215/svg-japan -->
         <!-- https://github.com/geolonia/japanese-prefectures -->
         <div class="map-content">
-            <img src="map-full.svg" class="big-back" width="50%" height="25%" />
+            <img src="map-full.svg" class="map-map" width="50%" />
             <div class="map-text">
-                <label class="lmar">Japan | 日本</label>
+                <h2 class="lmar">Japan | 日本</h2>
                 <p>
                     Japan is an archipelago, or string of islands, on the eastern edge of Asia. There are four main
                     islands: Hokkaido, Honshu, Shikoku, and Kyushu. There are also nearly 4,000 smaller islands! Japan's
@@ -71,51 +73,271 @@
     </div>
 
     <div class="content gray-bg" id="Places">
-        <label class="lmar">Places | 場所</label>
+        <h2 class="lmar">Places | 場所</h2>
+        <div class="cards-container">
+            <div class="img-card">
+                <img src="img/tokyo_tower.jpg" class="card-img">
+                <div class="text-group">
+                    <h2 class="card-title">Tokyo | <span class="no-break">東京</span></h2>
+                    <p class="card-text">Where the future meets tradition. Explore a neon-lit metropolis of towering
+                        skyscrapers, hidden
+                        shrines, and the vibrant pop-culture of Akihabara.</p>
+                </div>
+            </div>
+
+            <div class="img-card">
+                <img src="img/kyoto-japan-26.jpg" class="card-img">
+                <div class="text-group">
+                    <h2 class="card-title">Kyoto | <span class="no-break">京都</span></h2>
+                    <p class="card-text">The soul of ancient Japan. Wander through thousands of vermilion Torii gates
+                        and peaceful Zen
+                        gardens in the city of a thousand temples.</p>
+                </div>
+            </div>
+
+            <div class="img-card">
+                <img src="img/osaka.webp" class="card-img">
+                <div class="text-group">
+                    <h2 class="card-title">Osaka | <span class="no-break">大阪</span></h2>
+                    <p class="card-text">Japan’s kitchen and heartbeat. Indulge in world-class street food at Dotonbori
+                        and explore the
+                        historic grandeur of the majestic Osaka Castle.
+                    </p>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="content" id="Prices">
-        <label class="lmar">Prices | 価格</label>
+        <h2 class="lmar">Prices | 価格</h2>
+        <div class="cards-container">
+
+            <div class="img-card">
+                <div class="card-price-container">
+                    <img src="img/travel1.jpg" class="card-img">
+                    <div class="text-group">
+                        <h2 class="card-title">Essential <br>Discovery </h2>
+                        <p class="card-text"> The perfect entry point for first-time travelers. This 7-day package
+                            covers
+                            Tokyo and Kyoto, including high-speed Shinkansen
+                            transfers and stays.</p>
+                    </div>
+                    <div class="price-container">
+                        <h3 class="price-title">$1,499</h3>
+                        <a a href="#Prices" class="a-btn">Book</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="img-card">
+                <div class="card-price-container">
+                    <img src="img/travel2.jpg" class="card-img">
+                    <div class="text-group">
+                        <h2 class="card-title">Heritage <br>& Zen</h2>
+                        <p class="card-text"> Japanese culture through 12 days of curated
+                            experiences. Stay in traditional Ryokans with private Onsen access, enjoy authentic Kaiseki
+                            dining, and explore the hidden bamboo groves of Arashiyama.
+                        </p>
+                    </div>
+                    <div class="price-container">
+                        <h3 class="price-title">$2,850</h3>
+                        <a a href="#Prices" class="a-btn">Book</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="img-card">
+                <div class="card-price-container">
+                    <img src="img/travel3.webp" class="card-img">
+                    <div class="text-group">
+                        <h2 class="card-title">Imperial <br>Adventure</h2>
+                        <p class="card-text">The ultimate 21-day journey from the snowy peaks of Hokkaido to the
+                            tropical
+                            shores of Okinawa. This all-inclusive plan features domestic flights, VIP access to historic
+                            sites, a seamless luxury experience.
+                        </p>
+                    </div>
+                    <div class="price-container">
+                        <h3 class="price-title">$4,200</h3>
+                        <a a href="#Prices" class="a-btn">Book</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="content gray-bg" id="About">
-        <label class="lmar">Agency | 代理店</label>
-        <p>
-            We JAPANESE GOBLIN
-        </p>
+        <h2 class="lmar">Agency | 代理店</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p>
+                    Founded by explorers for explorers, our agency specializes in authentic Japanese experiences that go
+                    beyond
+                    the typical tourist paths. From the northern peaks of Hokkaido to the tropical soul of Okinawa, we
+                    provide
+                    seamless, high-end travel planning tailored to your unique rhythm. Let us handle the details while
+                    you lose
+                    yourself in the magic of Japan.
+                </p>
+                <p>
+                    We don’t just book trips; we curate lifelong memories in the Land of the Rising Sun. Our mission is
+                    to
+                    bridge the gap between the modern neon pulse of Shinjuku and the timeless tranquility of Kyoto’s
+                    hidden
+                    gardens. With a deep respect for Japanese heritage and an eye for the future, we guide you through
+                    an
+                    archipelago of endless wonder.
+                </p>
+            </div>
+            <img src="img/tourists.jpg" width="50%" height="50%" class="about-img">
+        </div>
     </div>
 
-    <div class="content" id="Reviews">
-        <label class="lmar">Reviews | クチコミ</label>
+    <div class="content" id="Memories">
+        <h2 class="lmar">Memories | 思い出</h2>
+        <div class="memories-grid">
+            <div class="memories-item">
+                <img src="img/Memories/Kyoto.webp">
+            </div>
+            <div class="memories-item">
+                <img src="img/Memories/Torii.avif">
+            </div>
+            <div class="memories-item mobile-hide">
+                <img src="img/Memories/Osaka.webp">
+            </div>
+            <div class="memories-item mobile-hide">
+                <img src="img/Memories/Osaka2.jpg">
+            </div>
+            <div class="memories-item">
+                <img src="img/Memories/Sapporo.jpg">
+            </div>
+            <div class="memories-item mobile-hide">
+                <img src="img/Memories/Kitsune.jpg">
+            </div>
+        </div>
     </div>
 
-    <div class="content gray-bg" id="Memories">
-        <label class="lmar">Memories | 思い出</label>
+    <div class="content gray-bg" id="Reviews">
+        <h2 class="lmar">Reviews | クチコミ</h2>
+        <div class="cards-container">
+
+            <div class="review-card">
+                <div class="top-group">
+                    <img src="img/pfp/pfp2.png" class="review-pfp" width="20%" height="20%">
+                    <div class="title-group">
+                        <h2>Emily Dawson</h2>
+                        <h3>on October 2023</h3>
+                    </div>
+                </div>
+
+                <div class="text-group">
+                    <p class="card-text"> Exploring Japan with this agency was an absolute dream come true. From the
+                        neon lights of Shinjuku to the peaceful morning ceremonies in Kyoto, every detail was handled
+                        with perfection. The private guide they provided in Osaka was incredibly knowledgeable and
+                        showed us hidden ramen spots we never would have found alone. I especially appreciated the
+                        seamless Shinkansen transfers and the high-end Ryokan stays they curated. If you want a
+                        stress-free journey through the Land of the Rising Sun, look no further!</p>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="top-group">
+                    <img src="img/pfp/pfp1.png" class="review-pfp" width="20%" height="20%">
+                    <div class="title-group">
+                        <h2>Marcus Chen</h2>
+                        <h3>on April 2024</h3>
+                    </div>
+                </div>
+
+                <div class="text-group">
+                    <p class="card-text"> We booked the "Heritage & Zen" package for our honeymoon during the cherry
+                        blossom season. The timing was impeccable, and the team went above and beyond to ensure we had
+                        the best viewing spots away from the massive crowds. Every accommodation was a perfect blend of
+                        traditional Japanese hospitality and modern luxury. The communication was excellent from start
+                        to finish, making us feel supported throughout the entire 12-day trip. We are already planning
+                        our next adventure to Hokkaido with them next winter!</p>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="top-group">
+                    <img src="img/pfp/pfp3.png" class="review-pfp" width="20%" height="20%">
+                    <div class="title-group">
+                        <h2>Sarah & John Miller</h2>
+                        <h3>on January 2024</h3>
+                    </div>
+                </div>
+
+                <div class="text-group">
+                    <p class="card-text"> Exploring Japan with this agency was an absolute dream come true. From the
+                        neon lights of Shinjuku to the peaceful morning ceremonies in Kyoto, every detail was handled
+                        with perfection. The private guide they provided in Osaka was incredibly knowledgeable and
+                        showed us hidden ramen spots we never would have found alone. I especially appreciated the
+                        seamless Shinkansen transfers and the high-end Ryokan stays they curated. If you want a
+                        stress-free journey through the Land of the Rising Sun, look no further!</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="content " id="FAQ">
-        <label class="lmar">FAQ | よくある質問</label>
-        <details>
-            <summary>Question 1?</summary>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates amet magnam dolor, quos numquam vel
-                repudiandae at cum reprehenderit, repellat ullam deleniti obcaecati sed recusandae eum, debitis
-                necessitatibus! Voluptate, tenetur?</p>
+    <div class="content" id="FAQ">
+        <h2 class="lmar">FAQ | よくある質問</h2>
+        <details class="faq-body">
+            <summary class="faq-title">Do I need a visa to visit Japan?</summary>
+            <p>Visa requirements depend on your citizenship. Currently, citizens of many countries (including the US,
+                UK, and EU) can enter Japan for tourism without a visa for up to 90 days. However, we always recommend
+                checking the official website of the Ministry of Foreign Affairs of Japan or your local embassy before
+                booking, as regulations can change.
+            </p>
         </details>
 
-        <details>
-            <summary>Question 2?</summary>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla explicabo animi ut? Autem, officiis.
-                Corrupti sint, veniam non facere modi fugit hic. Mollitia debitis voluptatibus sequi praesentium ut,
-                maiores beatae.</p>
+        <details class="faq-body">
+            <summary class="faq-title">When is the best time to see the Cherry Blossoms (Sakura)?</summary>
+            <p>Sakura typically blooms from late March to early April in major cities like Tokyo, Kyoto, and Osaka. If
+                you miss the peak in the south, you can still catch the blossoms in northern regions like Hokkaido as
+                late as early May. Keep in mind that this is the most popular travel season, so we recommend booking at
+                least 6–8 months in advance.</p>
+        </details>
+
+        <details class="faq-body">
+            <summary class="faq-title">How do I stay connected (Internet/Phone) while traveling?</summary>
+            <p>Staying connected is very easy. You can either rent a "Pocket Wi-Fi" device, which allows multiple
+                devices to connect at once, or purchase a travel eSIM if your phone supports it. Most major airports
+                have kiosks where you can pick up these devices upon arrival, or we can arrange to have them delivered
+                directly to your first hotel.</p>
         </details>
 
     </div>
 
     <div class="content gray-bg" id="Contacts">
-        <label class="lmar">Contacts | 連絡先</label>
+        <h2 class="lmar">Contacts | 連絡先</h2>
+        <div class="contacts-block">
+            <h3>Tokyo Headquarters (Main Office)</h3>
+            <p>2-chome-1-1 Nihonbashi, Chuo City, Tokyo 103-0027, Japan</p>
+            <p>+81 3-5550-0102</p>
+            <p>Mon–Fri: 9:00 AM – 6:00 PM (JST)</p>
+        </div>
+        <div class="contacts-block">
+            <h3>European Branch (London)</h3>
+            <p>45 Canvas St, Shoreditch, London EC2A 3AY, United Kingdom</p>
+            <p>+44 20 7946 0842</p>
+            <p>Mon–Fri: 9:00 AM – 5:00 PM (GMT)</p>
+        </div>
+        <div class="contacts-block">
+            <h3>North America Office (New York)</h3>
+            <p>250 Greenwich St, World Trade Center, New York, NY 10007, USA</p>
+            <p>+1 212-555-0198</p>
+            <p>Mon–Fri: 9:00 AM – 5:00 PM (EST)</p>
+        </div>
+        <div class="contacts-block">
+            <h3>General Inquiries & Support</h3>
+            <p>Email: hello@mikesjapan.travel</p>
+            <p>Emergency 24/7 Support: +81 80-1234-5678 (WhatsApp/Telegram/LINE available)</p>
+        </div>
     </div>
     <footer>
-        <h3>&copy Saikou Egor 2307b</h3>
+        <h3 class="footer-text">&copy Saikou Egor 2307b</h3>
     </footer>
 </body>
 
