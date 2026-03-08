@@ -18,8 +18,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net" />
-    <script src="https://cdn.jsdelivr.net"></script>
 </head>
 
 
@@ -42,7 +40,20 @@
     <header>
         <div class="darkened">
             <!-- Background -->
-            <img src="japan_title.avif" class="banner-img" />
+            <div class="carousel">
+                <div class="banner-img">
+                    <img src="japan_title.avif" class="active" />
+                    <img src="japan_title2.avif" />
+                    <img src="japan_title3.webp" />
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="carousel-controls">
+                <button id="prevBtn" class="nav-arrow">❮</button>
+                <button id="nextBtn" class="nav-arrow">❯</button>
+            </div>
+
             <!-- Overlay Text -->
             <div class="overlay">
                 <div class="text-group">
@@ -339,6 +350,39 @@
     <footer>
         <h3 class="footer-text">&copy Saikou Egor 2307b</h3>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('.banner-img img');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            let currentIndex = 0;
+            let autoPlayTimer;
+
+            function showImage(index) {
+                // Убираем активный класс у текущей
+                images[currentIndex].classList.remove('active');
+
+                // Считаем новый индекс (с закольцовкой)
+                currentIndex = (index + images.length) % images.length;
+
+                // Добавляем активный класс новой
+                images[currentIndex].classList.add('active');
+                
+                // Clear Interval so that User Controls won't conflict with Auto Controls
+                clearInterval(autoPlayTimer);
+                autoPlayTimer = setInterval(() => showImage(currentIndex + 1), 5000);
+            }
+
+            // User Controls
+            nextBtn.addEventListener('click', () => showImage(currentIndex + 1));
+            prevBtn.addEventListener('click', () => showImage(currentIndex - 1));
+
+            // Auto Controls
+            autoPlayTimer = setInterval(() => showImage(currentIndex + 1), 5000);
+        });
+    </script>
+
 </body>
 
 </html>
