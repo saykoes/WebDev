@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
         rel="stylesheet">
@@ -44,7 +43,7 @@
                 <div class="banner-img">
                     <img src="japan_title.avif" class="active" />
                     <img src="japan_title2.avif" />
-                    <img src="japan_title3.webp" />
+                    <img src="japan_title3.avif" />
                 </div>
             </div>
 
@@ -559,7 +558,7 @@
         <h2 class="lmar">Places | 場所</h2>
         <div class="cards-container">
             <div class="img-card" id="card-tokyo">
-                <img src="img/tokyo_tower.jpg" class="card-img" >
+                <img src="img/tokyo_tower.jpg" class="card-img">
                 <div class="text-group">
                     <h2 class="card-title">Tokyo | <span class="no-break">東京</span></h2>
                     <p class="card-text">Where the future meets tradition. Explore a neon-lit metropolis of towering
@@ -579,7 +578,7 @@
             </div>
 
             <div class="img-card" id="card-osaka">
-                <img src="img/osaka.webp" class="card-img" >
+                <img src="img/osaka.webp" class="card-img">
                 <div class="text-group">
                     <h2 class="card-title">Osaka | <span class="no-break">大阪</span></h2>
                     <p class="card-text">Japan’s kitchen and heartbeat. Indulge in world-class street food at Dotonbori
@@ -632,7 +631,7 @@
 
             <div class="img-card">
                 <div class="card-price-container">
-                    <img src="img/travel3.webp" class="card-img">
+                    <img src="img/travel3.avif" class="card-img">
                     <div class="text-group">
                         <h2 class="card-title">Imperial <br>Adventure</h2>
                         <p class="card-text">The ultimate 21-day journey from the snowy peaks of Hokkaido to the
@@ -690,7 +689,7 @@
                 <img src="img/Memories/Osaka.webp">
             </div>
             <div class="memories-item mobile-hide">
-                <img src="img/Memories/Osaka2.jpg">
+                <img src="img/Memories/Osaka2.avif">
             </div>
             <div class="memories-item">
                 <img src="img/Memories/Sapporo.jpg">
@@ -854,6 +853,34 @@
             autoPlayTimer = setInterval(() => showImage(currentIndex + 1), 5000);
         });
 
+
+        // ---- FAQ ----
+        document.querySelectorAll('.faq-body').forEach(el => {
+            const summary = el.querySelector('.faq-title');
+
+            summary.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                if (el.open) {
+                    el.classList.add('is-closing');
+                    setTimeout(() => {
+                        el.open = false;
+                        el.classList.remove('is-closing');
+                    }, 250);
+                } else {
+                    // 1. Сначала добавляем класс начального состояния (закрыто)
+                    el.classList.add('is-opening');
+                    // 2. Открываем сам тег details
+                    el.open = true;
+
+                    // 3. Через минимальный "тик" убираем класс, чтобы сработал transition
+                    requestAnimationFrame(() => {
+                        el.classList.remove('is-opening');
+                    });
+                }
+            });
+        });
+
         // ---- Map ----
 
         const mapSection = document.getElementById('Map');
@@ -913,18 +940,19 @@
         // Вынесем сброс в отдельную функцию, чтобы не дублировать код
         function resetToDefault() {
             allPrefectures.forEach(p => p.classList.remove('active'));
-            updateTextSmoothly(defaultTitle, defaultDesc);
+            updateTextSmoothly(defaultTitle, defaultDesc, 250);
         }
 
         // Функция для поиска и клика по префектуре по её ID
         function selectPrefectureById(id) {
             const target = allPrefectures.find(p =>
-                parseInt(p.dataset.code) === code
+                parseInt(p.dataset.code) === id
             );
             if (target) {
-                allPrefectures[1].dispatchEvent(new Event('click'));
+                // Передаем кастомную скорость 250мс специально для карточек
+                target.dispatchEvent(new CustomEvent('click', { detail: { speed: 250 } }));
                 // Прокрутка к карте, если карточки находятся далеко внизу
-                allPrefectures[1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                mapSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
                 console.error(`Префектура с id="${id}" не найдена на карте!`);
             }
@@ -934,9 +962,11 @@
         cardKyoto.addEventListener('click', () => selectPrefectureById(26));
         cardOsaka.addEventListener('click', () => selectPrefectureById(27));
 
-        function updateTextSmoothly(newTitle, newDesc) {
+        function updateTextSmoothly(newTitle, newDesc, timeout = 150) {
             // 1. Скрываем старый текст
             textBgElement.classList.add('fade-out');
+
+            document.fonts.load(`1em "Train One"`, newTitle); // preload new kanjis (segmented font)
 
             // 2. Ждем завершения анимации исчезновения (300мс)
             setTimeout(() => {
@@ -945,7 +975,7 @@
 
                 // 3. Возвращаем видимость
                 textBgElement.classList.remove('fade-out');
-            }, 150);
+            }, timeout);
         }
 
         // Сохраняем стандартный текст при загрузке страницы
@@ -954,10 +984,7 @@
 
         mapSection.addEventListener('click', function (event) {
             if (!event.target.closest('.prefecture') && !event.target.closest('.map-text') && (titleElement.textContent != defaultTitle)) {
-                document.querySelectorAll('.prefecture').forEach(p => {
-                    p.classList.remove('active');
-                });
-                updateTextSmoothly(defaultTitle, defaultDesc);
+                resetToDefault();
             }
         });
 
@@ -972,10 +999,12 @@
                     // 2. Добавляем класс только той, на которую нажали
                     this.classList.add('active');
 
-                    updateTextSmoothly(this.querySelector('title').textContent, ` ${this.dataset.description}`)
+                    // 1. Проверяем, передали ли мы кастомную скорость через CustomEvent
+                    // 2. Если нет, используем стандартные 150мс
+                    const timing = (event.detail && event.detail.speed) ? event.detail.speed : 150;
+
+                    updateTextSmoothly(this.querySelector('title').textContent, ` ${this.dataset.description}`, timing)
                 }
-                // Лог для проверки
-                console.log("Вы нажали на:", this.querySelector('title').textContent);
             });
         });
     </script>

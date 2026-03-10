@@ -29,6 +29,10 @@ body {
 
     -webkit-font-smoothing: antialiased;
 }
+::selection {
+    background-color: #dc143c;
+    color: #ffffff;
+}
 
 // Base Content block
 .content {
@@ -104,10 +108,11 @@ body {
         font-size: 20pt;
     }
 
-    transition: color $fade-time-std $extreme-ease-out,
-    background-color $fade-time-std $extreme-ease-out,
-    font-size $fade-time-std $extreme-ease-out,
-    transform 0.5s $extreme-ease-out;
+    transition:
+        color $fade-time-std $extreme-ease-out,
+        background-color $fade-time-std $extreme-ease-out,
+        font-size $fade-time-std $extreme-ease-out,
+        transform 0.5s $extreme-ease-out;
 }
 
 // Base Nav button
@@ -257,10 +262,13 @@ body {
                 transform 1.5s $normal-ease-out;
             z-index: 1;
 
+            transform: scale(1);
+
             // Show active
             &.active {
                 opacity: 1;
                 z-index: 2;
+                transform: scale(1.05);
             }
         }
     }
@@ -423,9 +431,7 @@ body {
 #Map {
     padding: 25px 10vw;
 
-
     .map-map {
-
         max-height: 400px;
 
         @media (width <=$small-screen-width) {
@@ -443,8 +449,6 @@ body {
             stroke: #8b0000;
             stroke-width: 5px;
             paint-order: stroke fill;
-
-
         }
 
         .active {
@@ -489,6 +493,9 @@ body {
             gap: 20px;
             font-size: 40pt;
 
+            user-select: none;
+            -webkit-user-select: none; // Safari
+
             button {
                 flex: 1;
                 border: none;
@@ -497,7 +504,8 @@ body {
                 color: #dc143c;
                 background-color: white;
                 box-shadow: 0 5px 25px rgba(#fff, 0.25);
-                transition: background-color $fade-time-std $extreme-ease-out,
+                transition:
+                    background-color $fade-time-std $extreme-ease-out,
                     color $fade-time-std $extreme-ease-out,
                     box-shadow $fade-time-std $extreme-ease-out;
 
@@ -516,7 +524,6 @@ body {
 
                 font-size: 14pt;
                 cursor: pointer;
-
             }
         }
 
@@ -536,11 +543,11 @@ body {
         background-color: $very-light-gray;
         text-align: right;
         opacity: 1;
-        transition: opacity 0.3s $extreme-ease-out,
-        transform 0.3s $extreme-ease-out;
+        transition:
+            opacity 0.3s $extreme-ease-out,
+            transform 0.3s $extreme-ease-out;
 
         cursor: default;
-
 
         &.fade-out {
             opacity: 0;
@@ -566,7 +573,7 @@ body {
     padding: 25px 15vw;
 }
 
-#Places{
+#Places {
     .cards-container .img-card {
         cursor: pointer;
     }
@@ -898,19 +905,44 @@ body {
 
 .faq-body {
     width: 100%;
-    padding: 10px 20px;
     max-width: 1200px;
     margin: 5px auto;
-
     background-color: $very-light-gray;
     border-radius: 5px;
-
-    &[open] .faq-title {
-        border-bottom: 1px solid #ddd;
-    }
+    overflow: hidden;
+    transition: all 0.5s $extreme-ease-out;
 
     p {
-        cursor: default;
+        margin: 0;
+        padding: 20px; 
+        opacity: 0;
+        max-height: 0;
+        transition:
+            max-height $fade-time-std $extreme-ease-out,
+            opacity 0.5s $extreme-ease-out,
+            padding 0.5s $extreme-ease-out;
+    }
+
+    &[open] {
+        p {
+            opacity: 1;
+            max-height: 500px; // Large enough for content
+        }
+
+        .faq-title {
+            border-bottom: 1px solid #ddd;
+            &::after {
+                rotate: 45deg; 
+            }
+        }
+    }
+
+    &.is-closing p,
+    &.is-opening p {
+        max-height: 0 !important;
+        opacity: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
 }
 
@@ -919,24 +951,28 @@ body {
     list-style: none;
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 15px 20px;
     cursor: pointer;
+
+    &::-webkit-details-marker {
+        display: none;
+    } // Hide default Safari arrow
 
     &::after {
         content: "+";
-        transition: rotate 1s $extreme-ease-out;
+        transition: rotate 0.5s $extreme-ease-out;
     }
 
     &:hover {
         &::after {
-            rotate: 90deg;
+            rotate: 45deg; 
         }
     }
 
     &:active {
         &::after {
-            rotate: 135deg;
             transition: rotate $fade-time-fast $extreme-ease-out;
+            rotate: 80deg !important;
         }
     }
 }
