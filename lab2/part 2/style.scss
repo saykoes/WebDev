@@ -19,6 +19,7 @@ $z-content: 1;
 html {
     scroll-behavior: smooth;
 }
+
 body {
     margin: 0;
     overflow-x: hidden;
@@ -47,14 +48,10 @@ body {
         transform 1s $extreme-ease-out,
         box-shadow $fade-time-std $extreme-ease-out;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    @media (width <= $small-screen-width) {
+
+    @media (width <=$small-screen-width) {
         padding: 25px 50px;
     }
-
-    // Now I know incorporating fake 3D sounds bad, but on Safari (out of all browsers)
-    // if I try to scale text without 3D, at the end of scale animation it snaps letters
-    // to a slightly different place and it's really annoying
-    transform: perspective(1000px) translateZ(0);
 
     img {
         user-select: none;
@@ -75,8 +72,9 @@ body {
         .lmar {
             background-color: $very-dark-gray;
             color: white;
-            transform: perspective(1000px) translateZ(0) scale(1.02);
+            transform: scale(1.02);
         }
+
         img {
             filter: drop-shadow(0px 0px 100px rgba(0, 0, 0, 0.1));
             transform: scale(1.02);
@@ -102,14 +100,14 @@ body {
     user-select: none;
     -webkit-user-select: none; // Safari
 
-    @media (width <= $small-screen-width) {
+    @media (width <=$small-screen-width) {
         font-size: 20pt;
     }
-    transition:
-        color $fade-time-std $extreme-ease-out,
-        background-color $fade-time-std $extreme-ease-out,
-        font-size $fade-time-std $extreme-ease-out,
-        transform 0.5s $extreme-ease-out;
+
+    transition: color $fade-time-std $extreme-ease-out,
+    background-color $fade-time-std $extreme-ease-out,
+    font-size $fade-time-std $extreme-ease-out,
+    transform 0.5s $extreme-ease-out;
 }
 
 // Base Nav button
@@ -134,6 +132,7 @@ body {
     &:hover {
         background-color: rgb(117, 0, 0);
     }
+
     &:active {
         background-color: $very-dark-red;
 
@@ -182,7 +181,7 @@ body {
             transition: background-color $fade-time-fast $extreme-ease-out;
         }
 
-        @media (width <= $small-screen-width) {
+        @media (width <=$small-screen-width) {
             width: 100%;
         }
     }
@@ -200,7 +199,7 @@ body {
             background-color $fade-time-std $extreme-ease-out,
             box-shadow $fade-time-std $extreme-ease-out;
 
-        @media (width <= $small-screen-width) {
+        @media (width <=$small-screen-width) {
             text-align: center;
             width: 100%;
         }
@@ -233,7 +232,7 @@ body {
     user-select: none;
     -webkit-user-select: none; // Safari
 
-    @media (width <= $small-screen-width) {
+    @media (width <=$small-screen-width) {
         height: 300px;
         margin-top: 114.66px;
     }
@@ -282,9 +281,11 @@ body {
 
         .nav-arrow {
             transform: translateY(-35%);
-            @media (width <= $small-screen-width) {
+
+            @media (width <=$small-screen-width) {
                 transform: translateY(-80%);
             }
+
             height: fit-content;
             pointer-events: auto; // So that carousel buttons would be clickable
             background-color: rgba(255, 255, 255, 0.2);
@@ -321,7 +322,7 @@ body {
 
         justify-content: space-around;
 
-        @media (width <= $small-screen-width) {
+        @media (width <=$small-screen-width) {
             padding-left: 0vw;
             justify-content: center;
             flex-direction: column;
@@ -329,7 +330,8 @@ body {
 
         .banner-btn {
             transform: translateY(-50%);
-            @media (width <= $small-screen-width) {
+
+            @media (width <=$small-screen-width) {
                 transform: translateY(-75%);
             }
 
@@ -342,6 +344,7 @@ body {
                 color: #fff;
                 box-shadow: 0 5px 25px rgba(#dc143c, 0.8);
             }
+
             &:active {
                 background-color: rgb(117, 0, 0);
                 box-shadow: 0 5px 25px rgba(117, 0, 0, 0.8);
@@ -349,6 +352,7 @@ body {
                 transition: background-color $fade-time-fast $extreme-ease-out;
             }
         }
+
         .text-group {
             display: flex;
             flex-direction: column;
@@ -356,7 +360,8 @@ body {
             width: fit-content;
 
             transform: translateY(-20%);
-            @media (width <= $small-screen-width) {
+
+            @media (width <=$small-screen-width) {
                 transform: translateY(-50%);
             }
 
@@ -367,10 +372,12 @@ body {
 
                 font-family: "Rampart One", sans-serif;
                 font-size: 6vw;
-                @media (width <= $small-screen-width) {
+
+                @media (width <=$small-screen-width) {
                     font-size: 40pt;
                 }
             }
+
             .banner-subtitle {
                 margin: 10px 0 0 0;
                 color: white;
@@ -381,7 +388,8 @@ body {
                 font-weight: 700;
 
                 font-size: 2.5vw;
-                @media (width <= $small-screen-width) {
+
+                @media (width <=$small-screen-width) {
                     font-size: 16pt;
                 }
 
@@ -399,6 +407,7 @@ body {
 
             transition: transform 1.5s $extreme-ease-out;
         }
+
         .overlay .text-group .banner-subtitle {
             letter-spacing: 3px;
         }
@@ -413,25 +422,104 @@ body {
 
 #Map {
     padding: 25px 10vw;
+
+
     .map-map {
-        max-height: 35vh;
-        margin-right: 20px;
-        @media (width <= $small-screen-width) {
+
+        max-height: 400px;
+
+        @media (width <=$small-screen-width) {
             margin-bottom: 20px;
+        }
+
+        flex: 1;
+
+        .prefecture {
+            fill: #ed143d;
+            /* Базовый цвет */
+            transition: fill $fade-time-std $extreme-ease-out;
+            /* Плавная смена цвета */
+            cursor: pointer;
+            stroke: #8b0000;
+            stroke-width: 5px;
+            paint-order: stroke fill;
+
+
+        }
+
+        .active {
+            fill: #690000;
+        }
+
+        .prefecture:hover {
+            fill: #8b0000;
+
+            /* Цвет при наведении */
+            &.active {
+                fill: #500000;
+            }
+        }
+
+        .prefecture:active {
+            fill: #690000;
+            transition: fill $fade-time-fast $extreme-ease-out;
+            /* Цвет при наведении */
         }
     }
 
     .map-content {
-        margin: 50px 0px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 50px auto;
         padding: auto;
         display: flex;
+        justify-content: center;
         align-items: center;
-        @media (width <= $small-screen-width) {
+        gap: 20px;
+
+        @media (width <=$small-screen-width) {
             flex-direction: column;
         }
     }
 
     .map-text {
+        .map-nav {
+            width: 100%;
+            display: flex;
+            gap: 20px;
+            font-size: 40pt;
+
+            button {
+                flex: 1;
+                border: none;
+                height: 40px;
+                border-radius: 10px;
+                color: #dc143c;
+                background-color: white;
+                box-shadow: 0 5px 25px rgba(#fff, 0.25);
+                transition: background-color $fade-time-std $extreme-ease-out,
+                    color $fade-time-std $extreme-ease-out,
+                    box-shadow $fade-time-std $extreme-ease-out;
+
+                &:hover {
+                    background-color: #dc143c;
+                    color: #fff;
+                    box-shadow: 0 5px 25px rgba(#dc143c, 0.8);
+                }
+
+                &:active {
+                    background-color: rgb(117, 0, 0);
+                    box-shadow: 0 5px 25px rgba(117, 0, 0, 0.8);
+
+                    transition: background-color $fade-time-fast $extreme-ease-out;
+                }
+
+                font-size: 14pt;
+                cursor: pointer;
+
+            }
+        }
+
         .lmar {
             margin-right: 0;
             width: fit-content;
@@ -439,18 +527,29 @@ body {
             user-select: auto;
             -webkit-user-select: auto; // Safari
         }
+
+        flex: 1;
         margin: auto;
         padding: 20px;
         max-width: 600px;
         border-radius: 10px;
-
         background-color: $very-light-gray;
         text-align: right;
+        opacity: 1;
+        transition: opacity 0.3s $extreme-ease-out,
+        transform 0.3s $extreme-ease-out;
 
         cursor: default;
 
-        @media (width <= $small-screen-width) {
+
+        &.fade-out {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        @media (width <=$small-screen-width) {
             text-align: center;
+
             .lmar {
                 margin-right: auto;
             }
@@ -467,6 +566,12 @@ body {
     padding: 25px 15vw;
 }
 
+#Places{
+    .cards-container .img-card {
+        cursor: pointer;
+    }
+}
+
 .cards-container {
     width: 100%;
     max-width: 1200px;
@@ -474,7 +579,8 @@ body {
 
     display: flex;
     justify-content: space-between;
-    @media (width <= $small-screen-width) {
+
+    @media (width <=$small-screen-width) {
         flex-direction: column;
         justify-content: center;
     }
@@ -496,7 +602,7 @@ body {
             transform $fade-time-std $extreme-ease-out,
             box-shadow $fade-time-std $extreme-ease-out;
 
-        @media (width <= $small-screen-width) {
+        @media (width <=$small-screen-width) {
             margin: 25px auto;
             width: 100%;
             flex-grow: 1;
@@ -523,6 +629,7 @@ body {
         &:hover {
             box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
             transform: scale(1.05);
+
             .card-img {
                 transform: scale(1);
                 filter: brightness(100%);
@@ -530,17 +637,20 @@ body {
                     transform 1.5s $extreme-ease-out,
                     filter 1.5s $normal-ease-out;
             }
+
             .text-group {
                 &::after {
                     opacity: 1;
                     transition: opacity 1.5s $extreme-ease-out;
                 }
+
                 .card-title {
                     text-shadow: 0 0px 25px rgba(0, 0, 0, 0.8);
                     font-weight: 800;
                     letter-spacing: 6px;
                 }
             }
+
             .card-price-container .text-group .card-title {
                 letter-spacing: 2px;
             }
@@ -590,12 +700,15 @@ body {
                 transition: opacity 1.5s $normal-ease-out;
             }
         }
+
         .card-price-container .text-group {
             justify-content: flex-start;
+
             &::after {
                 background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.8) 100%);
             }
-            @container (width >= 350px) {
+
+            @container (width >=350px) {
                 br {
                     display: none; // There is no need in 2 line title if card is large enough
                 }
@@ -621,6 +734,7 @@ body {
         .a-btn {
             align-self: center;
         }
+
         .price-title {
             font-family: "Google Sans", serif;
         }
@@ -639,9 +753,10 @@ body {
     max-width: 1200px;
     margin: auto;
 
-    @media (width <= $small-screen-width) {
+    @media (width <=$small-screen-width) {
         flex-direction: column;
         justify-content: center;
+
         .about-img {
             width: 100%;
         }
@@ -652,6 +767,7 @@ body {
         align-self: center;
         cursor: default;
     }
+
     .about-img {
         align-self: center;
         margin-left: 20px;
@@ -696,18 +812,22 @@ body {
         &:hover {
             transform: scale(1.05);
             box-shadow: 0 0px 25px rgba(0, 0, 0, 0.1);
+
             img {
                 transform: scale(1);
                 transition: transform 1.5s $extreme-ease-out;
             }
         }
     }
+
     @container (max-width: 630px) {
         padding: 50px;
         grid-template-columns: 1;
+
         .memories-item {
             max-width: 400px;
         }
+
         .mobile-hide {
             display: none;
         }
@@ -734,7 +854,7 @@ body {
         transform $fade-time-std $extreme-ease-out,
         box-shadow $fade-time-std $extreme-ease-out;
 
-    @media (width <= $small-screen-width) {
+    @media (width <=$small-screen-width) {
         margin: 25px auto;
         width: 80%;
         flex-grow: 1;
@@ -742,16 +862,19 @@ body {
 
     .top-group {
         display: flex;
+
         .review-pfp {
             align-self: center;
             margin-right: 15px;
             border-radius: 50%;
         }
+
         .title-group {
             h2 {
                 margin: 0;
                 padding: 0;
             }
+
             h3 {
                 font-size: 12pt;
                 font-weight: 500;
@@ -798,6 +921,7 @@ body {
     justify-content: space-between;
     padding: 10px;
     cursor: pointer;
+
     &::after {
         content: "+";
         transition: rotate 1s $extreme-ease-out;
@@ -830,6 +954,7 @@ body {
             background-color $fade-time-std $extreme-ease-out,
             letter-spacing $fade-time-std $extreme-ease-out;
     }
+
     p {
         margin: 2px;
     }
@@ -851,6 +976,7 @@ footer {
     text-align: center;
     background-color: #333;
     color: #fff;
+
     .footer-text {
         margin: auto;
         font-family: "Noto Sans JP", Tahoma, Geneva, Verdana, sans-serif;
