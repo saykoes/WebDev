@@ -88,7 +88,7 @@ function flatten(arr) {
 function task2_2() {
     const input = prompt("Multi-dimentional array", "[1,4,[34,1,20],[6,[6,12,8],6]]");
     try {
-        const arr = JSON.parse(input.replace(/'/g, '"'));  // input.replace replaces ' -> "
+        const arr = JSON.parse(input);
         const flat = flatten(arr);
         outResult(`[${flat.join(", ")}]`);
     } catch (e) {
@@ -143,4 +143,110 @@ function task3_2() {
         }
     }
     outResult(`${count}`);
+}
+
+//////////////
+/// Part 2 ///
+//////////////
+
+// rng
+function* randomGenerator(n, m) {   // * is a generator function
+    while (true) {
+        yield parseInt(Math.random() * (Math.abs(m - n) + 1)) + n;  // freeze the function and return (like a breakpoint)
+    }
+}
+function gen5rng() {
+    const n = parseInt(prompt("Generate from:", "5"));
+    const m = parseInt(prompt("Generate to:", "15"));
+    const gen = randomGenerator(n, m);
+    const samples = Array.from({ length: 5 }, () => gen.next().value); // .from(array, mapFunction)
+    outResult(`[${samples.join(", ")}]`);
+}
+
+// padovan sequence generator
+function* padovanGenerator() {
+    // P(0) = P(1) = P(2) = 1
+    let a = 1, b = 1, c = 1;
+    yield a; // P(0)
+    yield b; // P(1)
+    yield c; // P(2)
+
+    // P(n) = P(n-2)+P(n-3)
+    while (true) {
+        const next = a + b;
+        yield next;
+        a = b; b = c; c = next;
+    }
+}
+function padovan10() {
+    const gen = padovanGenerator();
+    const seq = Array.from({ length: 10 }, () => gen.next().value);
+    outResult(`[${seq.join(", ")}]`);
+}
+
+
+function isPrime(num) {
+    if (num < 2) return false;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+    }
+    return true;
+}
+function* primeGenerator() {
+    let num = 2;
+    while (true) {
+        if (isPrime(num)) yield num;
+        num++;
+    }
+}
+function gen10primes() {
+    const gen = primeGenerator();
+    const primes = Array.from({ length: 10 }, () => gen.next().value);
+    outResult(`[${primes.join(", ")}]`);
+}
+
+// word frequency via map
+function word_freq() {
+    const input = prompt("Введите строку:", "around the world there is the world where fact is fact");
+    const words = input.trim().split(/\s+/); // regex \s - space \s+ 1+ spaces
+    const map = new Map();
+
+    for (const word of words) // for word in words
+        map.set(word, (map.get(word) ?? 0) + 1); 
+
+    // form a neat array as an output
+    const result = Array.from(map.entries()).map(([key, value]) => `${key}:${value}`).join(", ");
+    outResult(`${result}`);
+}
+
+// isPrime function, but it's working with bigInt
+function isPrimeBigInt(num) {
+    if (num < 2n) return false; // 2n is for bigInt
+    for (let i = 2n; i * i <= num; i++) {
+        if (num % i === 0n) return false;
+    }
+    return true;
+}
+function getPrime(n) {
+    if (n <= 0) return null;
+
+    let count = 0;
+    let num = 2n;
+    while (true) {
+        if (isPrimeBigInt(num)) {
+            count++;
+            if (count === n) return num;
+        }
+        num++;
+    }
+}
+// get the n-th prime number using BigInt
+function nth_prime() {
+    const n = parseInt(prompt("Prime number position", "9"));
+    if (isNaN(n) || n <= 0) {
+        outResult("Invalid input");
+        return;
+    }
+    const prime = getPrime(n);
+    outResult(`${n}th prime is ${prime.toString()}`);
 }
