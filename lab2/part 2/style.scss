@@ -29,6 +29,7 @@ body {
 
     -webkit-font-smoothing: antialiased;
 }
+
 ::selection {
     background-color: #dc143c;
     color: #ffffff;
@@ -108,11 +109,10 @@ body {
         font-size: 20pt;
     }
 
-    transition:
-        color $fade-time-std $extreme-ease-out,
-        background-color $fade-time-std $extreme-ease-out,
-        font-size $fade-time-std $extreme-ease-out,
-        transform 0.5s $extreme-ease-out;
+    transition: color $fade-time-std $extreme-ease-out,
+    background-color $fade-time-std $extreme-ease-out,
+    font-size $fade-time-std $extreme-ease-out,
+    transform 0.5s $extreme-ease-out;
 }
 
 // Base Nav button
@@ -543,9 +543,8 @@ body {
         background-color: $very-light-gray;
         text-align: right;
         opacity: 1;
-        transition:
-            opacity 0.3s $extreme-ease-out,
-            transform 0.3s $extreme-ease-out;
+        transition: opacity 0.3s $extreme-ease-out,
+        transform 0.3s $extreme-ease-out;
 
         cursor: default;
 
@@ -569,7 +568,8 @@ body {
 #Places,
 #Prices,
 #Reviews,
-#Memories {
+#Memories,
+#Contacts {
     padding: 25px 15vw;
 }
 
@@ -914,7 +914,7 @@ body {
 
     p {
         margin: 0;
-        padding: 20px; 
+        padding: 20px;
         opacity: 0;
         max-height: 0;
         transition:
@@ -931,8 +931,9 @@ body {
 
         .faq-title {
             border-bottom: 1px solid #ddd;
+
             &::after {
-                rotate: 45deg; 
+                rotate: 45deg;
             }
         }
     }
@@ -956,7 +957,9 @@ body {
 
     &::-webkit-details-marker {
         display: none;
-    } // Hide default Safari arrow
+    }
+
+    // Hide default Safari arrow
 
     &::after {
         content: "+";
@@ -965,7 +968,7 @@ body {
 
     &:hover {
         &::after {
-            rotate: 45deg; 
+            rotate: 45deg;
         }
     }
 
@@ -978,6 +981,22 @@ body {
 }
 
 // --- Contacts ---
+
+.contacts-container {
+    display: flex;
+    justify-items: center;
+
+    @media (width <=1300px) {
+        flex-flow: column;
+    }
+}
+
+.contacts-text {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    flex-grow: 1;
+}
 
 .contacts-block {
     h3 {
@@ -1000,6 +1019,18 @@ body {
         color: #fff;
         letter-spacing: 1px;
     }
+
+    :hover {
+        cursor: pointer;
+    }
+}
+
+.contacts-map {
+    min-width: 500px;
+    width: 100%;
+    height: 488px;
+    background-color: #aaa;
+    flex-grow: 2;
 }
 
 // --- Footer ---
