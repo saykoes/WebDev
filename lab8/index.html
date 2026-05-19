@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная 8</title>
+    <script src="script.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            font-size: 13pt;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lab 8</h1>
+
+    <p>
+
+        <h2>1. Timers</h2>
+
+        <input type="number" id="counterInput" placeholder="type N" value="10">
+        <button onclick="startCounter()">start()</button>
+        <button onclick="pauseCounter()">pause()</button>
+        <button onclick="stopCounter()">stop()</button>
+    </p>
+    <p>
+        <h2>2. Delay, GitHub API</h2>
+        
+        <input type="number" id="delayInput" placeholder="Delay" value="3">
+        <button onclick="runDelayedCounter()">Run a delayed counter</button>
+        <br>
+
+        <input type="text" id="githubUserInput" placeholder="GitHub Username" value="SaykoES">
+        <button onclick="getFirstRepo()">Get First Github Repo (then)</button>
+    </p>
+    <p>
+        <h2>3. GitHub API (async/await)</h2>
+        
+        <button onclick="getGithubUserFirstRepo()">Get first Github repo (async)</button>
+    </p>
+    <p> >
+        <span id="result"></span>
+    </p>
+</body>
+
+</html>
