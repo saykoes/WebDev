@@ -35,7 +35,7 @@ function createCounter(n, onComplete) {
                 this.timerId = null;
                 this.isPaused = true;
 
-                document.getElementById("result").textContent += " (paused)";
+                outResult(`Counter: ${this.currentCount} (paused)`);
             }
         },
 
