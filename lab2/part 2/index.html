@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>;
 </head>
 
@@ -1013,7 +1013,31 @@
                     // 2. Если нет, используем стандартные 150мс
                     const timing = (event.detail && event.detail.speed) ? event.detail.speed : 150;
 
-                    updateTextSmoothly(this.querySelector('title').textContent, ` ${this.dataset.description}`, timing)
+                    // trim the name for weather api
+                    const fullTitle = this.querySelector('title').textContent.trim();
+                    const match = fullTitle.match(/\/\s*(.+)$/);
+                    if (match && match[1]) {
+                        const prefectureName = match[1].trim().toLowerCase();
+
+                        fetch(`http://localhost:3000/weather/${prefectureName}`)
+                            .then(response => {
+                                if (!response.ok) throw new Error(`Server Error: ${response.status}`);
+                                return response.json();
+                            })
+                            .then(res => {
+                                const temp = res.data.temperature;
+                                // example: "北海道 / Hokkaido 15°C"
+                                const updatedTitle = `${fullTitle} ${temp}°C`;
+                                updateTextSmoothly(updatedTitle, ` ${this.dataset.description}`, timing);
+                            })
+                            .catch(error => {
+                                console.error('Error while attempting to access weather api:', error);
+                                updateTextSmoothly(fullTitle, ` ${this.dataset.description}`, timing);
+                            });
+                    } else {
+                        console.warn("Prefecrute not found:", fullTitle);
+                        updateTextSmoothly(fullTitle, ` ${this.dataset.description}`, timing);
+                    }
                 }
             });
         });
